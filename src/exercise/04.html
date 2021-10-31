@@ -7,18 +7,84 @@
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
-    // 🐨 Make a function called `message` which returns the JSX we want to share
+    const Message = (props) => {
+      return (
+           <div {...props} />
+      )
+    }
 
-    // 🐨 use that function in place of the divs below with:
-    // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
     const element = (
       <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
+        {Message({children: 'Hello World'})}
+        {Message({children: 'Goodbye World'})}
       </div>
     )
 
-    // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
+    // // Extra Credit Solution 1
+    // const element2 = (
+    //   <div className="container">
+    //     {React.createElement(Message,{children: 'Hello World 1'})}
+    //     {React.createElement(Message,{children: 'Goodbye World 1'})}
+    //   </div>
+    // )
+
+    // // Extra Credit Solution 2
+    // const element3 = (
+    //   <div className="container">
+    //     <Message>Hello World 2</Message>
+    //     <Message>Goodbye World 2</Message>
+    //   </div>
+    // )
+
+    // Extra Credit Solution 3
+    // const PropTypes = {
+    //   //  That function will take all of the props and the propName specifically and the componentName. Then do some validation, and if it's invalid, then return an error that explains what the problem is.
+    //   string(props, propName, componentName) {
+    //     const type = typeof props[propName];
+    //     if(type !== "string"){
+    //       return new Error(`Hey the component ${componentName} needs the prop ${propName} to be type of "string" but it was passed a ${type}`)
+    //     }
+    //   }
+    // }
+
+    // const Message = ({subject, greeting}) => {
+    //   return (
+    //     <div className="message">
+    //       {greeting}, {subject}
+    //     </div>
+    //   )
+    // }
+
+    // This propTypes object is something that React is going to reference when it's rendering a component.
+    // when it gets a React element that has certain props ( here is subject and greeting), and it's going to pass those props to function that  provided for the all props.
+    // Message.propTypes = {
+    //   subject: PropTypes.string,
+    //   greeting: PropTypes.string
+    // }
+
+    // const element4 = (
+    //   <div className="container">
+    //     <Message subject={5} greeting />
+    //     <Message subject="World" greeting="Goodbye" />
+    //   </div>
+    // )
+
+    // Extra Credit Solution 5
+    //  React Fragments (<>..</> or <React.Fragment>...</React.Fragment>) : It’s a special kind of component from React which allows you to position two elements side-by-side rather than just nested.
+    //  const Message = ({subject, greeting}) => {
+    //   return (
+    //     <div className="message">
+    //       {greeting}, {subject}
+    //     </div>
+    //   )
+    // }
+
+    // const element5 = (
+    //   <>
+    //     <Message subject="World" greeting="Hello" />
+    //     <Message subject="World" greeting="Goodbye" />
+    //   </>
+    // )
     ReactDOM.render(element, document.getElementById('root'))
   </script>
 </body>
